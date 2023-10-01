@@ -64,7 +64,7 @@ $router->get('/post-form', function (array $request) {
     HTML;
 });
 
-$router->post('/post-route', function (array $request) {
+$router->get('/post-route', function (array $request) {
     var_dump("Post route request:", $request);
 });
 

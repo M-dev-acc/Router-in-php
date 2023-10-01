@@ -56,8 +56,6 @@ class Route
      * @return void
      */
     public function get(string $path, $callback) : void {
-        
-
         $this->setRoute($path, "GET", $callback);
     }
     
@@ -81,8 +79,7 @@ class Route
     {
         foreach ($this->routes as $route) {
             extract($route);
-            if ($this->isRouteMatched($path)) {
-
+            if ($this->isRouteMatched($path) && $this->requestMethod === $method) {                
                 $dynamicVariables = $this->getDynamicVariables($path);
                 
                 // Pass dynamic variables and request parameters into the callback
@@ -154,7 +151,7 @@ class Route
     private function isRouteMatched(string $route) : bool {
         $routeFormat = $this->getSearchPattern($route);
         $extractedRoute = explode("?", $this->requestUri)[0];
-        
+
         return preg_match($routeFormat, $extractedRoute);
     }
 
