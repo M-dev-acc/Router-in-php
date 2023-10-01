@@ -1,0 +1,14 @@
+# Enable the RewriteEngine for URL rewriting
+RewriteEngine On
+
+# Check if the requested URL does not map to an existing file
+RewriteCond %{REQUEST_FILENAME} !-f
+
+# Check if the requested URL does not map to an existing directory
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# If both conditions above are met (file and directory do not exist),
+# then apply the following RewriteRule:
+
+# Match any URL pattern (.*), capture it and store it as $1
+RewriteRule ^(.*)$ index.php$1 [L,QSA]
