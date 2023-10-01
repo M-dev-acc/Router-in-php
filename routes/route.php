@@ -41,4 +41,31 @@ $router->get('/get-route/dynamic/{value}/demo/{id}', function (array $request, s
     HTML;
 });
 
+$router->get('/post-form', function (array $request) {
+    echo <<<HTML
+        <h1>PHP ROUTER</h1>
+        <div>
+            <fieldset>
+                <legend>
+                    <h2>Form to test post route</h2>
+                </legend>
+
+                <form action="/post-route" method="post">
+                    <label for="userNameInput">User name</label>
+                    <input type="text" name="username" id="userNameInput"><br />
+                    
+                    <label for="userPasswordInput">Password</label>
+                    <input type="password" name="password" id="userPasswordInput"><br />
+
+                    <input type="submit" value="Submit form">
+                </form>
+            </fieldset>
+        </div>
+    HTML;
+});
+
+$router->post('/post-route', function (array $request) {
+    var_dump("Post route request:", $request);
+});
+
 $router->dispatch();
